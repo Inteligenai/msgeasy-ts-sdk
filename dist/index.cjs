@@ -1067,6 +1067,9 @@ var TemplatesApi = class extends BaseAPI {
     if (requestParameters["status"] != null) {
       queryParameters["status"] = requestParameters["status"];
     }
+    if (requestParameters["category"] != null) {
+      queryParameters["category"] = requestParameters["category"];
+    }
     if (requestParameters["updatedAfter"] != null) {
       queryParameters["updatedAfter"] = requestParameters["updatedAfter"];
     }
@@ -1507,7 +1510,7 @@ function observingFetch(inner, onResponse) {
 }
 
 // src/version.ts
-var VERSION = true ? "0.1.0" : "0.0.0-dev";
+var VERSION = true ? "0.1.1" : "0.0.0-dev";
 
 // src/client.ts
 var DEFAULT_BASE_URL = "https://api.msgeasy.com";

@@ -10,7 +10,7 @@ errors handled for you.
 ## Install
 
 ```bash
-npm install github:Inteligenai/msgeasy-ts-sdk#v0.1.0
+npm install github:Inteligenai/msgeasy-ts-sdk#v0.1.1
 ```
 
 Pin to a released tag, not `#main` — see [Inteligenai/msgeasy-ts-sdk](https://github.com/Inteligenai/msgeasy-ts-sdk) for the latest.
@@ -435,7 +435,7 @@ every case. `result.reason` says which:
 
 Events: `message.sent`, `message.delivered`, `message.read`, `message.failed`, `inbound.received`,
 `verify.approved`, `verify.delivered`, `verify.failed`, `template.status_changed`,
-`usage.threshold`.
+`template.category_changing`, `template.category_changed`, `usage.threshold`.
 
 Register your endpoint in the console — there is no API for it.
 

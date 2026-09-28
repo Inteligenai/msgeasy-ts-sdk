@@ -852,7 +852,7 @@ interface CreateTemplateInput {
      */
     name: string;
     /**
-     * Utility only. Marketing templates can be listed and sent, but not created here.
+     * Utility only. Marketing templates cannot be created, listed or sent through the API; authentication templates are made in WhatsApp Business Manager.
      */
     category: CreateTemplateInputCategoryEnum;
     /**
@@ -1076,7 +1076,7 @@ interface Template {
      */
     status: TemplateStatusEnum;
     /**
-     * Meta re-categorises on approval, so this can differ from what was submitted.
+     * Meta re-categorises on approval, so this can differ from what was submitted. `AUTHENTICATION` templates are made in WhatsApp Business Manager and synced.
      */
     category: TemplateCategoryEnum;
     /**
@@ -1132,6 +1132,7 @@ type TemplateStatusEnum = typeof TemplateStatusEnum[keyof typeof TemplateStatusE
 declare const TemplateCategoryEnum: {
     readonly Marketing: "MARKETING";
     readonly Utility: "UTILITY";
+    readonly Authentication: "AUTHENTICATION";
 };
 type TemplateCategoryEnum = typeof TemplateCategoryEnum[keyof typeof TemplateCategoryEnum];
 /**
@@ -1273,7 +1274,7 @@ interface UpdateTemplateInput {
      */
     name?: string;
     /**
-     * Utility only. Marketing templates can be listed and sent, but not created here.
+     * Utility only. Marketing templates cannot be created, listed or sent through the API; authentication templates are made in WhatsApp Business Manager.
      */
     category?: UpdateTemplateInputCategoryEnum;
     /**
@@ -1350,6 +1351,10 @@ interface TemplatesListRequest {
      * Return only templates in this state.
      */
     status?: TemplatesListStatusEnum;
+    /**
+     * Return only templates of this category. Both are returned by default.
+     */
+    category?: TemplatesListCategoryEnum;
     /**
      * Only templates changed since this instant, which is what makes polling cheap.
      */
@@ -1456,6 +1461,14 @@ declare const TemplatesListStatusEnum: {
     readonly Rejected: "rejected";
 };
 type TemplatesListStatusEnum = typeof TemplatesListStatusEnum[keyof typeof TemplatesListStatusEnum];
+/**
+ * @export
+ */
+declare const TemplatesListCategoryEnum: {
+    readonly Utility: "UTILITY";
+    readonly Authentication: "AUTHENTICATION";
+};
+type TemplatesListCategoryEnum = typeof TemplatesListCategoryEnum[keyof typeof TemplatesListCategoryEnum];
 
 /**
  * MsgEasy WhatsApp API
@@ -1740,6 +1753,8 @@ interface TemplateListQuery {
     limit?: number;
     /** Only templates in this state. */
     status?: TemplatesListStatusEnum;
+    /** Only templates of this category. Both are returned by default. */
+    category?: TemplatesListCategoryEnum;
     /** Only templates changed since this instant, which is what makes polling cheap. */
     updatedAfter?: Date | string;
     /** The last `id` of the previous page. `listAll` sets this for you. */
